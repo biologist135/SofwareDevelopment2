@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+
+# Compiled Java files
+*.class
+
+# Build folders
+bin/
+build/
+target/
+out/
+
+# Logs
+*.log
