@@ -3,18 +3,30 @@ package banking;
 public class Test {
 
 	public static void main(String[] args) {
-		BankAccount a = new BankAccount("Benjamin", "Platt", 123);
-		CheckingAccount c = new CheckingAccount("Christopher", "Platt", 234);
+		BankAccount account = new BankAccount("Benjamin", "Platt", 123);
+		CheckingAccount checking = new CheckingAccount("Christopher", "Platt", 234);
 		
-		a.deposit(200.0);
-		c.deposit(300.0);
-		a.withdrawal(100.0);
-		c.processWithdrawal(400);
-		System.out.println();
-		c.displayAccount();
-		System.out.println();
-		a.accountSummary();
-		System.out.println();
+		
+		//Testing BankAccount Class
+		account.deposit(500.00);
+		System.out.printf("$%.2f%n",account.getBalance());
+		//Expected result is 500 dollar balance.
+		
+		account.withdrawal(200.00);
+		System.out.printf("$%.2f%n",account.getBalance());
+		//Expected result is 300 dollar balance.
+		
+		account.withdrawal(400);
+		//Expected "Insufficient funds"
+		
+		System.out.printf("$%.2f%n",account.getBalance());
+		//Expected Balance would be 300 dollars due to no withdrawal occurring.
+		
+		account.accountSummary();
+		
+		checking.deposit(300.0);
+		checking.processWithdrawal(400);
+		checking.displayAccount();
 	}
 
 }

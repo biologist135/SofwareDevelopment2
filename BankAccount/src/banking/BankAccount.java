@@ -6,20 +6,21 @@ public class BankAccount {
 	int accountID;
 	double balance;
 	
+	//Generalized constructor.
 	public  BankAccount() {
 		firstName = "NO FIRST NAME";
 		lastName = "NO LAST NAME";
 		accountID = -1;
 		balance = 0.0;
 	}
-	
+	//Parameterized constructor.
 	public BankAccount(String firstName, String lastName, int accountID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.accountID = accountID;
 		this.balance = 0.0;
 	}
-	
+	//Adds money to the balance variable. Also checks if the money request is greater than zero.
 	public double deposit(double addMoney) {
 		if (addMoney > 0 ) {
 			balance = balance + addMoney;
@@ -31,15 +32,23 @@ public class BankAccount {
 		}
 		return balance;
 	}
+	//Subtracts a set amount of money from the balance variable. Also checks if the money request is greater than zero.
+	//also checks that the withdrawal does not overdraft.
 	public double withdrawal(double takeMoney) {
 		if (takeMoney > 0) {
-			balance = balance - takeMoney;
+			if (balance - takeMoney > 0) {
+				balance = balance - takeMoney;
+			}
+			else {
+				System.out.println("Insufficient funds");
+			}
 		}
 		else {
-			System.out.println("This is not a valid withdrawal.");
+			System.out.println("This is not a valid withdrawal request.");
 		}
 		return balance;
 	}
+	//Getters and Setters
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -68,12 +77,13 @@ public class BankAccount {
 		return balance;
 	}
 
-	
+	// Prints out all data for the account.
 	public void accountSummary() {
 		System.out.println("First Name: " + firstName);
 		System.out.println("Last Name: " + lastName);
 		System.out.println("Account ID: " + accountID);
-		System.out.println("Account Balance: " + balance);
+		System.out.print("Account Balance: ");
+		System.out.printf("$%.2f%n", balance);
 	}
 
 }
