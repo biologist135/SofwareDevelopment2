@@ -10,7 +10,7 @@ public class BankAccount {
 		firstName = "NO FIRST NAME";
 		lastName = "NO LAST NAME";
 		accountID = -1;
-		balance = 0;
+		balance = 0.0;
 	}
 	
 	public BankAccount(String firstName, String lastName, int accountID) {
@@ -67,9 +67,7 @@ public class BankAccount {
 	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(double newBalance) {
-		balance = newBalance;
-	}
+
 	
 	public void accountSummary() {
 		System.out.println("First Name: " + firstName);
