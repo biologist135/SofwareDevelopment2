@@ -15,6 +15,7 @@ public class Test {
 	}
 	//Testing BankAccount Deposit Method.
 	public static void testDeposit() {
+		//checking for normal function.
 		BankAccount account = new BankAccount("Benjamin", "Platt", 123);
 		account.deposit(200.0);
 		double expected = 200.0;
@@ -25,6 +26,28 @@ public class Test {
 		}
 		else {
 			System.out.println("PASS: Deposit Test");
+		}
+		//checking for zero input
+		account.deposit(0.0);
+		expected = 200.0;
+		actual = account.getBalance();
+		
+		if(actual != expected) {
+			System.out.println("FAIL: Deposit Test(0.0) - Expected " + expected + " but got " + actual);
+		}
+		else {
+			System.out.println("PASS: Deposit Test (0.0)");
+		}
+		//checking for negative input
+		account.deposit(-100.0);
+		expected = 200.0;
+		actual = account.getBalance();
+		
+		if(actual != expected) {
+			System.out.println("FAIL: Deposit Test(negative) - Expected " + expected + " but got " + actual);
+		}
+		else {
+			System.out.println("PASS: Deposit Test(negative)");
 		}
 	}
 	
@@ -122,7 +145,7 @@ public class Test {
 			System.out.println();
 		}
 		
-		//checking process withdrawal that overdrafts.
+		//checking process withdrawal that overdrafts and applies an overdraft fee.
 		checking.processWithdrawal(250.0);
 		
 		expected = -280.0;
@@ -137,6 +160,31 @@ public class Test {
 			System.out.println();
 		}
 		
+	}
+	public static void testDefaulConstructor() {
+		BankAccount account = new BankAccount();
+		boolean passed = true;
+		
+		if(!account.getFirstName().equals("NO FIRST NAME")){
+			passed = false;
+		}
+		if(!account.getLastName().equals("NO LAST NAME")) {
+			passed = false;
+		}
+		if(account.getAccountID() != -1) {
+			passed = false;
+		}
+		if(account.getBalance() != 0.0) {
+			passed = false;
+		}
+		
+		if (passed == false) {
+			System.out.println("FAIL: Default Constructor Test");
+			
+		}
+		else {
+			System.out.println("PASS: Default Constructor Test");
+		}
 		
 	}
 	
