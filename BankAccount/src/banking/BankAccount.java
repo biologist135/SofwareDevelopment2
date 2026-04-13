@@ -5,6 +5,7 @@ public class BankAccount {
 	String lastName;
 	int accountID;
 	double balance;
+	public boolean noFund;
 	
 	//Generalized constructor.
 	public  BankAccount() {
@@ -35,16 +36,20 @@ public class BankAccount {
 	//Subtracts a set amount of money from the balance variable. Also checks if the money request is greater than zero.
 	//also checks that the withdrawal does not overdraft.
 	public double withdrawal(double takeMoney) {
+		noFund = false;
 		if (takeMoney > 0) {
 			if (balance - takeMoney > 0) {
 				balance = balance - takeMoney;
 			}
 			else {
-				System.out.println("Insufficient funds");
+				noFund = true;
 			}
 		}
 		else {
 			System.out.println("This is not a valid withdrawal request.");
+		}
+		if (noFund == true) {
+			System.out.println("Insufficient Funds");
 		}
 		return balance;
 	}

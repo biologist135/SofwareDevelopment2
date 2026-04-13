@@ -29,20 +29,20 @@ public class CheckingAccount extends BankAccount {
 		withdrawal(takeMoney);
 		if(super.getBalance() < 0) {
 			withdrawal(overDraftFee);
-			System.out.print("A fee has been applied to your account: ");
+			System.out.print("A $30.00 overdraft fee has been applied to your account.\nCurrent Balance: ");
 			System.out.printf("%.2f", super.getBalance());
 			System.out.println(" Dollars");
 		}
 		else {
-			System.out.printf("$%.2f%n", super.getBalance());
+			System.out.printf("Current Balance: $%.2f%n", super.getBalance());
 		}
 	}
 	
 	public void displayAccount() {
 		super.accountSummary();
-		System.out.print("Interest Rate: %");
+		System.out.print("Interest Rate: ");
 		System.out.printf("%.2f",interestRate * 100.0);
-		System.out.println();
+		System.out.println("%");
 		
 	}
 }
