@@ -7,8 +7,8 @@ public class Test {
 		testDeposit();
 		testWithdrawal();
 		testInsufficientFunds();
-		testAccountSummary();
 		testProcessWithdrawal();
+		testAccountSummary();
 		testDisplayAccount();
 		
 		
@@ -31,6 +31,7 @@ public class Test {
 	//Testing BankAccount Withdrawal Method.
 	public static void testWithdrawal() {
 		BankAccount account = new BankAccount("Benjamin", "Dixon", 234);
+		//Normal withdrawal with sufficient funds
 		account.deposit(200.0);
 		account.withdrawal(50.0);
 		
@@ -38,11 +39,23 @@ public class Test {
 		double actual = account.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("Fail: Withdrawal test - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Withdrawal test - Expected " + expected + " but got " + actual);
 		}
 		else {
 			System.out.println("PASS: Withdrawal test");
 		}
+		//Withdrawal that brings balance to 0.
+		account.withdrawal(150.0);
+		expected = 0.0;
+		actual = account.getBalance();
+		
+		if(actual != expected) {
+			System.out.println("FAIL: Withdrawal - Edge Case test - Expected " + expected + " but got " + actual);
+		}
+		else {
+			System.out.println("PASS: Withdrawal - Edge Case test");
+		}
+		
 	}
 	//Testing BankAccounts Withdrawal Method for edge cases that indicate insufficient funds for withdrawal
 	public static void testInsufficientFunds() {
@@ -54,10 +67,10 @@ public class Test {
 		double actual = account.getBalance();
 		
 		if (actual != expected) {
-			System.out.println("Fail: Withdrawal test - insufficient funds - Expected " + expected + " but got " + actual);
+			System.out.println("Fail: Withdrawal test - Insufficient Funds - Expected " + expected + " but got " + actual);
 		}
 		else {
-			System.out.println("PASS: Withdrawal test - insufficient funds.");
+			System.out.println("PASS: Withdrawal test - Insufficient Funds.");
 		}
 	}
 	//visual check of BankAccount accountSummary method.
@@ -77,9 +90,10 @@ public class Test {
 		System.out.println();
 		
 	}
-	
+	//Test processWithdrawal() Method for general function, 0 edge case, and overdraft function.
 	public static void testProcessWithdrawal() {
 		CheckingAccount checking = new CheckingAccount("Benjamin", "Platt", 567);
+		//Normal process withdrawal.
 		checking.deposit(200.00);
 		checking.processWithdrawal(50);
 		
@@ -94,17 +108,33 @@ public class Test {
 			System.out.println("PASS: Process Withdrawal test");
 			System.out.println();
 		}
+		//checking process withdrawing to 0.00 in balance.
+		checking.processWithdrawal(150.00);
+		expected = 0.00;
+		actual = checking.getBalance();
 		
+		if(actual != expected) {
+			System.out.println("Fail: Process Withdrawal - Edge Case test - Expected " + expected + " but got " + actual);
+			System.out.println();
+		}
+		else {
+			System.out.println("PASS: Process Withdrawal - Edge Case test");
+			System.out.println();
+		}
+		
+		//checking process withdrawal that overdrafts.
 		checking.processWithdrawal(250.0);
 		
-		expected = -130.0;
+		expected = -280.0;
 		actual = checking.getBalance();
 		
 		if(actual != expected) {
 			System.out.println("Fail: Process Withdrawal Overdraft test - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
 			System.out.println("PASS: Process withdrawal Overdraft test");
+			System.out.println();
 		}
 		
 		

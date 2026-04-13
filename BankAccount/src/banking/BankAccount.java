@@ -38,7 +38,7 @@ public class BankAccount {
 	public double withdrawal(double takeMoney) {
 		noFund = false;
 		if (takeMoney > 0) {
-			if (balance - takeMoney > 0) {
+			if (balance - takeMoney >= 0) {
 				balance = balance - takeMoney;
 			}
 			else {
