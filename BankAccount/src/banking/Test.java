@@ -10,6 +10,8 @@ public class Test {
 		testProcessWithdrawal();
 		testAccountSummary();
 		testDisplayAccount();
+		testDefaulConstructor();
+		testSetters();
 		
 		
 	}
@@ -23,9 +25,11 @@ public class Test {
 		
 		if (actual != expected) {
 			System.out.println("FAIL: Deposit test - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
 			System.out.println("PASS: Deposit Test");
+			System.out.println();
 		}
 		//checking for zero input
 		account.deposit(0.0);
@@ -34,9 +38,11 @@ public class Test {
 		
 		if(actual != expected) {
 			System.out.println("FAIL: Deposit Test(0.0) - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
 			System.out.println("PASS: Deposit Test (0.0)");
+			System.out.println();
 		}
 		//checking for negative input
 		account.deposit(-100.0);
@@ -44,10 +50,12 @@ public class Test {
 		actual = account.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("FAIL: Deposit Test(negative) - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Deposit Test (negative) - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Deposit Test(negative)");
+			System.out.println("PASS: Deposit Test (negative)");
+			System.out.println();
 		}
 	}
 	
@@ -63,9 +71,11 @@ public class Test {
 		
 		if(actual != expected) {
 			System.out.println("FAIL: Withdrawal test - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
 			System.out.println("PASS: Withdrawal test");
+			System.out.println();
 		}
 		//Withdrawal that brings balance to 0.
 		account.withdrawal(150.0);
@@ -73,10 +83,12 @@ public class Test {
 		actual = account.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("FAIL: Withdrawal - Edge Case test - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Withdrawal - Edge Case Test - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Withdrawal - Edge Case test");
+			System.out.println("PASS: Withdrawal - Edge Case Test");
+			System.out.println();
 		}
 		
 	}
@@ -90,27 +102,38 @@ public class Test {
 		double actual = account.getBalance();
 		
 		if (actual != expected) {
-			System.out.println("Fail: Withdrawal test - Insufficient Funds - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Withdrawal Test - Insufficient Funds - Expected " + expected + " but got " + actual);
+			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Withdrawal test - Insufficient Funds.");
+			System.out.println("PASS: Withdrawal Test - Insufficient Funds.");
+			System.out.println();
 		}
 	}
-	//visual check of BankAccount accountSummary method.
+	//Check of BankAccount accountSummary method.
 	public static void testAccountSummary() {
 		BankAccount account = new BankAccount("Christopher", "Platt", 456);
+		boolean passed = true;
 		
-		System.out.println();
-		System.out.println("EXPECTED VALUE");
-		System.out.println("First Name: Christopher");
-		System.out.println("Last Name: Platt");
-		System.out.println("Account ID: 456");
-		System.out.println("Account Balance: $0.00");
+		if (!account.getFirstName().equals("Christopher")) {
+			passed = false;
+		}
+		if (!account.getLastName().equals("Platt")) {
+			passed = false;
+		}
+		if (account.getAccountID() != 456) {
+			passed = false;
+		}
+		if (account.getBalance() != 0) {
+			passed = false;
+		}
 		
-		System.out.println();
-		System.out.println("ACTUAL VALUE");
-		account.accountSummary();
-		System.out.println();
+		if(passed == false) {
+			System.out.println("FAIL: Account Summary Test");
+		}
+		else {
+			System.out.println("PASS: Account Summary Test");
+		}
 		
 	}
 	//Test processWithdrawal() Method for general function, 0 edge case, and overdraft function.
@@ -124,11 +147,11 @@ public class Test {
 		double actual = checking.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("Fail: Process Withdrawal test - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Process Withdrawal Test - Expected " + expected + " but got " + actual);
 			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Process Withdrawal test");
+			System.out.println("PASS: Process Withdrawal Test");
 			System.out.println();
 		}
 		//checking process withdrawing to 0.00 in balance.
@@ -137,11 +160,11 @@ public class Test {
 		actual = checking.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("Fail: Process Withdrawal - Edge Case test - Expected " + expected + " but got " + actual);
+			System.out.println("FAIL: Process Withdrawal - Edge Case Test - Expected " + expected + " but got " + actual);
 			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Process Withdrawal - Edge Case test");
+			System.out.println("PASS: Process Withdrawal - Edge Case Test");
 			System.out.println();
 		}
 		
@@ -152,15 +175,16 @@ public class Test {
 		actual = checking.getBalance();
 		
 		if(actual != expected) {
-			System.out.println("Fail: Process Withdrawal Overdraft test - Expected " + expected + " but got " + actual);
+			System.out.println("Fail: Process Withdrawal Overdraft Test - Expected " + expected + " but got " + actual);
 			System.out.println();
 		}
 		else {
-			System.out.println("PASS: Process withdrawal Overdraft test");
+			System.out.println("PASS: Process withdrawal Overdraft Test");
 			System.out.println();
 		}
 		
 	}
+	//Testing default constructor function.
 	public static void testDefaulConstructor() {
 		BankAccount account = new BankAccount();
 		boolean passed = true;
@@ -191,18 +215,51 @@ public class Test {
 	public static void testDisplayAccount() {
 		CheckingAccount checking = new CheckingAccount("Benjamin", "Platt", 1354);
 		checking.deposit(250);
+		boolean passed = true;
+		if (!checking.getFirstName().equals("Benjamin")) {
+			passed = false;
+		}
+		if (!checking.getLastName().equals("Platt")) {
+			passed = false;
+		}
+		if(checking.getAccountID()!= 1354) {
+			passed = false;
+		}
+		if (checking.getBalance() != 250.0){
+			passed = false;
+		}
 		
-		System.out.println();
-		System.out.println("EXPECTED VALUE");
-		System.out.println("First Name: Benjamin");
-		System.out.println("Last Name: Platt");
-		System.out.println("Account ID: 1354");
-		System.out.println("Account Balance: $250.00");
-		System.out.println("Interest Rate: 0.07%");
+		if (passed == false) {
+			System.out.println("FAILED: Display Account Test");
+		}
+		else {
+			System.out.println("PASS: Display Account Test");
+		}
+	}
+	public static void testSetters() {
+		BankAccount account = new BankAccount();
+		boolean passed = true;
 		
-		System.out.println();
-		System.out.println("ACTUAL VALUE");
-		checking.displayAccount();
+		account.setFirstName("Matt");
+		account.setLastName("Dixon");
+		account.setAccountID(54321);
+		
+		if(!account.getFirstName().equals("Matt")) {
+			passed = false;
+		}
+		if (!account.getLastName().equals("Dixon")) {
+			passed = false;
+		}
+		if (account.getAccountID() != 54321) {
+			passed = false;
+		}
+		
+		if (passed == false) {
+			System.out.println("FAIL: Setters Test");
+		}
+		else {
+			System.out.println("PASS: Setters Test");
+		}
 	}
 
 }
