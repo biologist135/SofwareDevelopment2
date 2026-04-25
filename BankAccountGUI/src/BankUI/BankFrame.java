@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
 
 public class BankFrame extends JFrame implements ActionListener{
@@ -18,6 +17,7 @@ public class BankFrame extends JFrame implements ActionListener{
 	private JButton checkBalance;
 	private JLabel currBalance;
 	private double amount;
+	
 	
 	//Frame Constructor
 	public BankFrame() {
@@ -96,7 +96,7 @@ public class BankFrame extends JFrame implements ActionListener{
 	        String input = JOptionPane.showInputDialog(this, "Enter Current Balance:");
 	        if (input == null) {
 	            JOptionPane.showMessageDialog(this, "A starting balance is required.");
-	            return;
+	            continue;
 	        }
 	        if (input.isEmpty()) {
 	            JOptionPane.showMessageDialog(this, "Please enter an amount.");
@@ -131,6 +131,8 @@ public class BankFrame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
+		
+		
 		//Action performed when the withdraw button is clicked. Checks for valid input and updates balance.
 		//Try Catch statements implemented and formatting of balance for continuity.
 		if(source == withdraw) {
