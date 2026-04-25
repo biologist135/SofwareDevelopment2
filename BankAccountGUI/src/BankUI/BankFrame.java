@@ -154,7 +154,7 @@ public class BankFrame extends JFrame implements ActionListener{
 						JOptionPane.showMessageDialog(this, "Amount must be a positive value.");
 				        return;
 				 }
-				 if(!bank.withdrawalCheck(amount)) {
+				 if(!bank.withdrawal(amount)) {
 					 JOptionPane.showMessageDialog(this, "Invalid amount or insufficient funds.");
 				 }
 				 
