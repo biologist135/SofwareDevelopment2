@@ -165,4 +165,37 @@ public class BankFrame extends JFrame implements ActionListener{
 		//try catch implemented.
 		else if(source == deposit) {
 			
-			String input = use
+			String input = userInput.getText();
+			
+
+			 if (input.isEmpty()) {
+
+				 JOptionPane.showMessageDialog(this, "Please enter an amount.");
+			        return;
+			 }
+			 try {
+			 double amount = Double.parseDouble(input);
+			 
+			 if(amount < 0) {
+					JOptionPane.showMessageDialog(this, "Amount must be a positive value.");
+			        return;
+			 }
+			 
+			 bank.deposit(amount);
+			 currBalance.setText("Current Balance: " + df.format(bank.getBalance()));
+			 }catch(NumberFormatException ex) {
+				 JOptionPane.showMessageDialog(this, "Please enter a valid number.");
+			 }
+		}
+		//Uses a show message option pane to provide balance (Formated) to the user
+		else if(source == checkBalance) {
+			JOptionPane.showMessageDialog(this, "Balance: " + df.format(bank.getBalance()));
+			currBalance.setText("Current Balance: " + df.format(bank.getBalance()));
+	        return;
+	        
+		}
+	
+	}
+	
+
+}

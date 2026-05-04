@@ -1,27 +1,28 @@
 package shape;
 import java.lang.Math;
-
+//Sphere Class which extends abstract class shape
 public class Sphere extends Shape {
 	double surA;
 	double vol;
 	double radius;
 	String results;
-	
+	//constructor for sphere requiring radius parameter
 	public Sphere(double radius) {
 		this.radius = radius;
 	}
-	
+	//getter for radius
 	public double getRadius() {
 		return radius;
 	}
 	
 	
-	
+	//overriding abstract method surfaceArea() for sphere.
 	@Override
 	public double surfaceArea(){
 		surA = (4 * Math.PI *Math.pow(this.radius, 2));
 		return surA;
 	}
+	//overriding abstract method volume() for sphere.
 	@Override
 	public double volume() {
 		
@@ -29,6 +30,7 @@ public class Sphere extends Shape {
 		
 		return vol;
 	}
+	//overriding toString() method to print out surface are and volume of a sphere given a radius.
 	@Override
 	public String toString() {
 		
