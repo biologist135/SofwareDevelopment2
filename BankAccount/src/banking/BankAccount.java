@@ -25,31 +25,43 @@ public class BankAccount {
 	public double deposit(double addMoney) {
 		if (addMoney > 0 ) {
 			balance = balance + addMoney;
-			
 		}
 		else {
-			System.out.println("This is not a valid deposit.");
-					
+			System.out.println("This is not a valid deposit.");		
 		}
 		return balance;
+	}
+	
+	public boolean isPositiveBalance(double takeMoney) {
+		if( balance - takeMoney < 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	public boolean inputCheck(double userInput) {
+		if (userInput < 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	//Subtracts a set amount of money from the balance variable. Also checks if the money request is greater than zero.
 	//also checks that the withdrawal does not overdraft.
 	public double withdrawal(double takeMoney) {
-		noFund = false;
-		if (takeMoney > 0) {
-			if (balance - takeMoney >= 0) {
+		if (inputCheck(takeMoney)) {
+			if (isPositiveBalance(takeMoney)) {
 				balance = balance - takeMoney;
 			}
-			else {
-				noFund = true;
+			else if (!isPositiveBalance(takeMoney)) {
+				System.out.println("Insufficient Funds");
 			}
 		}
 		else {
 			System.out.println("This is not a valid withdrawal request.");
-		}
-		if (noFund == true) {
-			System.out.println("Insufficient Funds");
 		}
 		return balance;
 	}

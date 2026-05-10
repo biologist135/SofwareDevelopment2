@@ -16,7 +16,7 @@ public class CheckingAccount extends BankAccount {
 	//For the superclass there is an if statement that prevents users from pulling out more money than was in the account.
 	@Override
 	public double withdrawal(double takeMoney) {
-		if (takeMoney > 0) {
+		if (super.inputCheck(takeMoney)) {
 			balance = balance - takeMoney;
 		}
 		else {
@@ -26,8 +26,9 @@ public class CheckingAccount extends BankAccount {
 	}
 	//implemented using the overridden withdrawal method and printed out if a fee was incurred.
 	public void processWithdrawal(double takeMoney) {
+		boolean isPositiveBalance = super.isPositiveBalance(takeMoney);
 		withdrawal(takeMoney);
-		if(super.getBalance() < 0) {
+		if(!isPositiveBalance) {
 			withdrawal(overDraftFee);
 			System.out.print("A $30.00 overdraft fee has been applied to your account.\nCurrent Balance: ");
 			System.out.printf("%.2f", super.getBalance());
@@ -37,7 +38,6 @@ public class CheckingAccount extends BankAccount {
 			System.out.printf("Current Balance: $%.2f%n", super.getBalance());
 		}
 	}
-	
 	public void displayAccount() {
 		super.accountSummary();
 		System.out.print("Interest Rate: ");
