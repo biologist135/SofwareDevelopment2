@@ -56,7 +56,7 @@ public class BankAccount {
 			if (isPositiveBalance(takeMoney)) {
 				balance = balance - takeMoney;
 			}
-			else if (!isPositiveBalance(takeMoney)) {
+			else {
 				System.out.println("Insufficient Funds");
 			}
 		}
