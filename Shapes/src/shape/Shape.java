@@ -1,6 +1,6 @@
 package shape;
 
-//Abtract class Shape
+//Abstract class Shape
 public abstract class Shape {
 	//Abstract method requiring surface area for any subclasses to be concrete.
 	abstract double surfaceArea();

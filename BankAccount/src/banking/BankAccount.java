@@ -96,11 +96,4 @@ public class BankAccount {
 
 	// Prints out all data for the account.
 	public void accountSummary() {
-		System.out.println("First Name: " + firstName);
-		System.out.println("Last Name: " + lastName);
-		System.out.println("Account ID: " + accountID);
-		System.out.print("Account Balance: ");
-		System.out.printf("$%.2f%n", balance);
-	}
-
-}
+		System.out.println("First N
