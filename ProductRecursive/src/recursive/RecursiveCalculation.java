@@ -33,7 +33,4 @@ public class RecursiveCalculation {
 		int value = 5;
 		int result = productNumbers(value, scanner);
 		
-		System.out.println("The product calculated with the " + value + " numbers selected is " + result +".");
-	}
-
-}
+		System.out.println("The product calculated with the " + value + " numbers selected i
