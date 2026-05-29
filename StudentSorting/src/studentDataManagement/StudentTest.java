@@ -23,13 +23,13 @@ public class StudentTest {
 		System.out.println("Unordered List: ");
 		printStudents(students);
 		
-		//runs selectionSort on the students ArrayList using the sortByRollno() comparator.
+		//runs MergeSort on the students ArrayList using the sortByRollno() comparator.
 		students = MergeSort.mergeSort(students, new SortByRollno());
 		//Prints out the sorted ArrayList by roll number.
 		System.out.println("\nSorted by Roll Number:");
 		printStudents(students);
 		
-		//runs selectionSort on the students ArrayList using the sortByName() comparator.
+		//runs MergeSort on the students ArrayList using the sortByName() comparator.
 		students = MergeSort.mergeSort(students,new SortByName());
 		//Prints out the sorted ArrayList by name.
 		System.out.println("\nSorted by Name:");
