@@ -24,13 +24,13 @@ public class StudentTest {
 		printStudents(students);
 		
 		//runs selectionSort on the students ArrayList using the sortByRollno() comparator.
-		SelectionSort.selectionSort(students, new SortByRollno());
+		students = MergeSort.mergeSort(students, new SortByRollno());
 		//Prints out the sorted ArrayList by roll number.
 		System.out.println("\nSorted by Roll Number:");
 		printStudents(students);
 		
 		//runs selectionSort on the students ArrayList using the sortByName() comparator.
-		SelectionSort.selectionSort(students,new SortByName());
+		students = MergeSort.mergeSort(students,new SortByName());
 		//Prints out the sorted ArrayList by name.
 		System.out.println("\nSorted by Name:");
 		printStudents(students);
@@ -38,8 +38,8 @@ public class StudentTest {
 	
 	//Created a method to print out the ArrayList. iterates through the students ArrayList and prints out each student.
 	public static void printStudents(ArrayList<Student> students) {
-		for (Student student: students) {
-			System.out.println(student);
+		for (int i = 0; i < students.size(); i++) {
+			System.out.println(students.get(i));
 		}
 		
 
